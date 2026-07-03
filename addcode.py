@@ -36,6 +36,7 @@ if st.button("Predict"):
     myinput = pd.DataFrame(data  = sc.transform(myinput), columns = columns)
     result = model.predict(myinput)
     if result[0] == 0:
-        st.error("No, patient is not diabetic")
+        st.success("No, patient is not diabetic")
     else:
-        st.success("Yes, patient is diabetic")
+        st.error("Yes, patient is diabetic")
+    
