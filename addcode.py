@@ -58,7 +58,7 @@ st.markdown(
 
 
 st.image(
-    r"C:\Users\vishakha rajbhoj\OneDrive\Documents\Html code\diabeties.png",
+    "diabeties1.png",
     width=700
 )
 
