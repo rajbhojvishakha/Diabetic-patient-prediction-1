@@ -2,12 +2,17 @@ import streamlit as st
 import pandas as pd
 import pickle
 
+
 # ---------------- PAGE CONFIG ----------------
 st.set_page_config(
     page_title="Diabetes Prediction",
     page_icon="🩺",
     layout="wide"
 )
+
+
+
+
 
 # ---------------- LOAD MODEL ----------------
 model = pickle.load(open("model.pkl", "rb"))
@@ -18,34 +23,10 @@ st.markdown("""
 <style>
 
 .stApp{
-    background-color:#F8FAFC;
+    background-color:#FAFAFA;
 }
+            
 
-.main-title{
-    text-align:center;
-    color:#2563EB;
-    font-size:42px;
-    font-weight:bold;
-}
-
-.sub-title{
-    text-align:center;
-    color:#64748B;
-    font-size:18px;
-    margin-bottom:30px;
-}
-
-div[data-testid="stForm"]{
-    background:white;
-}
-
-div[data-testid="stVerticalBlock"]{
-    border-radius:15px;
-}
-
-[data-testid="stSidebar"]{
-    background:#2563EB;
-}
 
 .stButton>button{
     width:100%;
@@ -63,22 +44,6 @@ div[data-testid="stVerticalBlock"]{
     color:white;
 }
 
-div[data-baseweb="input"]{
-    border-radius:10px;
-}
-
-.stSlider{
-    padding-top:10px;
-}
-
-.result{
-    padding:20px;
-    border-radius:12px;
-    text-align:center;
-    font-size:24px;
-    font-weight:bold;
-}
-
 </style>
 """, unsafe_allow_html=True)
 
@@ -88,10 +53,33 @@ st.markdown(
     unsafe_allow_html=True,
 )
 
-st.markdown(
-    "<p class='sub-title'>Machine Learning Based Diabetes Prediction</p>",
-    unsafe_allow_html=True,
+
+
+
+
+st.image(
+    r"C:\Users\vishakha rajbhoj\OneDrive\Pictures\Screenshots\imgdiabetiesprediction.png.png",
+    width=700
 )
+
+
+
+st.sidebar.markdown("### 🩺 Diabetes")
+st.sidebar.text("High blood sugar due to insulin issues.")
+st.sidebar.text("Needs early detection and control.")
+st.sidebar.text("Can cause serious health problems.")
+
+st.sidebar.markdown("### 🩺 Prevention of Type 1 Diabetes")
+st.sidebar.text("🧬Type 1 diabetes cannot be fully prevented as it is autoimmune.")
+st.sidebar.text("🦠Reduce risk of infections by maintaining good hygiene.")
+st.sidebar.text("🥗Support immune health with a balanced nutritious diet.")
+st.sidebar.text("👨‍⚕️Early screening if there is a family history.")
+st.markdown('-----------')
+st.sidebar.markdown("### 🩺 Prevention of Type 2 Diabetes")
+st.sidebar.text("🏃 Exercise regularly (at least 30 minutes daily.")
+st.sidebar.text("⚖️ Maintain a healthy body weight.")
+st.sidebar.text("🍎 Eat a balanced diet low in sugar and processed foods.")
+st.sidebar.text("🩺 Go for regular blood sugar check-ups.")
 
 # ---------------- INPUT SECTION ----------------
 st.markdown("### 📋 Patient Information")
@@ -188,8 +176,29 @@ if st.button("🔍 Predict Diabetes"):
     if prediction[0] == 1:
 
         st.success("✅ The patient is **NOT Diabetic**")
+        st.subheader("📋 Patient Summary")
+        col1, col2 = st.columns(2)
+        with col1:
+            st.write(f"**Age:** {Age}")
+            st.write(f"**BMI:** {BMI}")
+            st.write(f"**Glucose:** {Glucose}")
+        with col2:
+            st.write(f"**Blood Pressure:** {BloodPressure}")
+            st.write(f"**Insulin:** {Insulin}")
+            st.write(f"**Pregnancies:** {Pregnancies}")
 
     else:
 
         st.error("⚠️ The patient is **Diabetic**")
+        st.markdown("---")
+        st.subheader("📋 Patient Summary")
+        col1, col2 = st.columns(2)
+        with col1:
+            st.write(f"**Age:** {Age}")
+            st.write(f"**BMI:** {BMI}")
+            st.write(f"**Glucose:** {Glucose}")
+        with col2:
+            st.write(f"**Blood Pressure:** {BloodPressure}")
+            st.write(f"**Insulin:** {Insulin}")
+            st.write(f"**Pregnancies:** {Pregnancies}")
 
